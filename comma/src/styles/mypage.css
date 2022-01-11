@@ -1,0 +1,328 @@
+.mypage {
+  padding-top: 230px;
+}
+.mypage .title {
+  text-align: center;
+}
+
+.mypage .sub-title {
+  text-align: center;
+  margin-bottom: 84px;
+}
+.mypage .project-container {
+  width: 100%;
+  height: 430px;
+  margin-bottom: 193px;
+}
+.mypage .project-container ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mypage .project-container ul li {
+  width: 285px;
+  margin: 0 20px 50px 0;
+}
+.mypage .project-container ul li:nth-child(4),
+.mypage .project-container ul li:last-child {
+  margin-right: 0;
+}
+.mypage .project-container ul li .project-info {
+  width: 285px;
+  height: 30px;
+  background-color: #F9F9F9;
+  display: flex;
+  align-items: center;
+}
+.mypage .project-container ul li .project-info p {
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+  width: 222px;
+  padding-left: 15px;
+}
+.mypage .project-info .save-btn {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url('../assets/images/save.png') no-repeat center center;
+  background-size: cover;
+  text-indent: -9999px;
+}
+.mypage .project-info .delete-btn {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url('../assets/images/delete.png') no-repeat center center;
+  background-size: cover;
+  text-indent: -9999px;
+}
+
+.mypage .delete-white-bg {
+  margin-top: 200px;
+}
+.mypage .delete-ok {
+  padding: 65px 87px;
+  text-align: center;
+}
+.mypage .delete-ok p {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 34px;
+  margin-bottom: 24px;
+}
+.mypage .delete-ok .yes-no {
+  display: flex;
+  justify-content: space-around;
+}
+.mypage .delete-ok a:hover{
+  border: 1px solid #999999;
+  font-weight: bold;
+  transition: border ease 0.5s;
+}
+.mypage .delete-ok a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 135px;
+  height: 40px;
+  border: 1px solid #DADADA;
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+}
+/* 신청서 리스트 */
+.pd_table{
+  width: 1200px;
+  margin-bottom: 150px;
+  font-family: S-Core Dream;
+  color: #555555;
+  font-weight: 200;
+  font-size: 14px;
+}
+.pd_table select {
+  font-family: S-Core Dream;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+  color: #333;
+  background: url('../assets/images/select-arrow.png') no-repeat 92% 50%; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0 15px;
+}
+select::-ms-expand { 
+  display: none;
+}
+.del-btn{
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #DADADA;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s;
+  box-sizing: border-box;
+}
+.del-btn img {
+  width: 20px;
+}
+.del-btn input {
+  outline: 0;
+  background-color: transparent;
+  font-family: S-Core Dream;
+  color: #333;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+.del-btn:hover{
+  background-color: #f0f0f0;
+  border: none;
+}
+.pd_table thead {
+  font-size: 14px;
+}
+.pd_table tbody {
+  font-size: 14px;
+}
+.pd_table thead tr td,.pd_table tbody tr{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #DADADA;
+  box-sizing: border-box;
+}
+
+.pd_table tbody tr td:nth-child(3){
+  width: 600px;
+}
+.request{
+  width: 600px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  transition: all .5s;
+  cursor: pointer;
+}
+.request:hover {
+  color: #3093D7;
+
+}
+.request li{
+   width: 100%;
+   height: 50px;
+   float: left;
+}
+.request li::after{
+  content: "|";
+  /* margin-left: 10px; */
+  float: right;
+} 
+.request li:last-child::after{
+  content: none;
+}
+.pd_table thead tr td select{
+  width: 105px;
+  height: 40px;
+  border-radius: 10px;
+}
+.pd_table thead tr td:first-child{
+  width: 10%;
+}
+.pd_table thead tr td:nth-child(3) {
+  text-indent: 7.5%;
+}
+.pd_table thead tr td:nth-child(3),.pd_table tbody tr td:nth-child(3){
+  width: 50%;
+  text-align: left;
+}
+.pd_table thead tr td:nth-child(4),.pd_table tbody tr td:nth-child(4){
+  width: 20%;
+  text-align: left;
+  text-indent: 10%;
+}
+.pd_table thead tr td:last-child{
+  width: 10%;
+}
+.pd_table tbody tr td:last-child{
+  padding-top: 6px;
+  box-sizing: border-box;
+}
+.pd_table > tr {
+  text-align: center;
+}
+.pd_table > tr td {
+  padding: 25px 0;
+  font-size: 16px;
+  width: 100%;
+}
+/* 신청내역 팝업 */
+.register-details {
+  padding: 84px 50px 30px;
+  position: relative;
+}
+.register-details p {
+  text-align: center;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 34px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 20px;
+}
+.register-details .detail-list {
+  padding: 0 0 73px 35px;
+}
+.register-details .detail-list > li {
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 30px;
+}
+.register-details .detail-list > li > ul {
+  margin-left: 40px;
+}
+.register-details .detail-list > li > ul li {
+  list-style: disc;
+}
+.register-details .del-btn {
+  margin: 0 auto;
+}
+/* 개인정보 수정 */
+.mypage .change-form {
+  padding: 50px 36px 40px;
+}
+.mypage .change-form .title {
+  text-align: center;
+}
+.mypage .change-form .notice {
+  text-align: center;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 30px;
+}
+.mypage .change-ok {
+  padding: 84px 50px 40px;
+  text-align: center;
+}
+.mypage .change-btn {
+  display: block;
+  width: 150px;
+  height: 52px;
+  border: 1px solid #555555;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 192px;
+  transition: all ease 0.5s;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+}
+.mypage .change-btn:hover {
+  background-color: #3093D7;
+  color: #FFFFFF;
+  border: 1px solid #3093D7;
+}
+.change-form ul {
+  margin-bottom: 17px;
+  font-family: S-Core Dream;
+}
+.change-form ul li {
+  display: flex;
+  border-bottom: 1px solid #DADADA;
+  padding: 12px 0;
+  justify-content: space-around;
+  transition: all .5s ease;
+}
+.change-form ul li:hover{
+  border-bottom: 1px solid #555;
+}
+.change-form ul li:hover img{
+  filter: opacity(0.5) drop-shadow(0 0 0 black);
+}
+.change-form ul li:hover input::-webkit-input-placeholder{
+  color: rgb(128, 128, 128);
+}
+.change-form ul li input::-webkit-input-placeholder{
+  color: #DADADA;
+}
+.change-form ul li img {
+  height: 20px;
+  margin: 0 auto;
+  transition: all .5s ease;
+}
+.change-form ul li input {
+  font-weight: 200;
+  font-size: 14px; 
+  text-indent: 5px;
+  width: 350px;
+  font-family: 'S-Core Dream';
+  color: #555;
+}

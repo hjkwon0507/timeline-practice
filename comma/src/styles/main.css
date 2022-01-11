@@ -1,0 +1,139 @@
+.title {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.4em;
+  color: #3093D7;
+  margin-bottom: 25px;
+}
+.sub-title {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.4em;
+  color: #555;
+}
+
+/* Start */
+.main-start {
+  margin-bottom: 76px;
+}
+.main-start .inner {
+  padding-top: 304px;
+}
+.main-start .start-box {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 98px;
+}
+.main-start .start-text {
+  text-align: center;
+  width: 560px;
+  float: left;
+}
+.main-start .start-text p:first-child {
+  color: #555;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.4em;
+  margin-bottom: 24px;
+}
+.main-start .start-text p:nth-child(2) {
+  color: #3093D7;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.25em;
+  margin-bottom: 28px;
+}
+.main-start .start-text p:last-child {
+  font-weight: 200;
+  font-size: 64px;
+  line-height: 1.2em;
+}
+.start-video {
+  float: right;
+}
+.start-video span {
+  margin-top: 10px;
+  float: right;
+}
+.start-bottom .start-btn {
+  display: block;
+  margin: 0 auto 40px;
+  width: 200px;
+  padding: 14px 0;
+  border: 1px solid #333;
+  text-align: center;
+  font-weight: 200;
+  font-size: 21px;
+  line-height: 1.2em;
+  transition: border ease 0.5s;
+}
+.start-bottom .start-btn:hover{
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: #3093D7;
+  font-weight: bold;
+}
+.start-bottom .down {
+  display: flex;
+  margin: 0 auto;
+  display: block;
+  width: 44px;
+  height: 50px;
+  background-image: url(../assets/images/down-arrow.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  text-indent: -9999px;
+  animation: ani 1s infinite alternate;
+}
+@keyframes ani {
+  0% { transform: scale(1); opacity: 1; color: #fff; }
+  100% { transform: scale(1.2); opacity: 0.8; color: #888; }
+}
+
+/* Video-ex */
+.main-mid .inner {
+  margin-bottom: 165px;
+}
+.main-mid .mid-text {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.main-mid .mid-box ul {
+  display: flex;
+  justify-content: center;
+}
+.main-mid .mid-box ul li {
+  margin-right: 20px;
+}
+.main-mid .mid-box ul li:last-child {
+  margin-right: 0;
+}
+.main-mid .mid-box ul li p {
+  text-align: center;
+  margin-top: 25px;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 1.2em;
+  color: #555;
+}
+
+/* Watermark */
+.main-bottom .inner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 165px;
+}
+.main-bottom img {
+  margin-right: 80px;
+}
+
+/* Easy */
+#easy .inner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 165px;
+}
+#easy img {
+  margin-left: 302px;
+}
+
