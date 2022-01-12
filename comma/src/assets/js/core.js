@@ -1,5 +1,4 @@
-
-class RtsVideoEditor {
+const core = class RtsVideoEditor {
 
     /*
      * 클래스 상수 목록 입니다.
@@ -52,8 +51,8 @@ class RtsVideoEditor {
         this.fileName = ''  //서버에서 결과로 받은 파일 이름 입니다
         this.savedPath = ''  //서버에서 결과로 받은 파일이 저장된 위치 입니다
         
-        this.#_initKeyBoardEvent()
-        this.#_generateObject()
+        this.initKeyBoardEvent()
+        this.generateObject()
     }
 
     //파일을 전송하여 분석 합니다
@@ -74,13 +73,13 @@ class RtsVideoEditor {
                     this.savedPath = res.savedPath
                     $(`#${this.timeLineBody}`).scrollLeft(0)
 
-                    if(this.#_NVL(res, res.duration, res.duration.seconds)){  //동영상이 올바르게 분석 되었다면,
+                    if(this.NVL(res, res.duration, res.duration.seconds)){  //동영상이 올바르게 분석 되었다면,
                         $(`#${this.previewName}`).attr('src',null)
                         $(`.${this.imgChild}`).remove()
                         $(`.${this.timeLineChild}`).remove()
-                        this.#_initTimeLine(res)
-                        this.#_initScroll()
-                        this.#_downloadImg()
+                        this.initTimeLine(res)
+                        this.initScroll()
+                        this.downloadImg()
                     }
                     if(calback) calback.done()
                 }, 
@@ -92,7 +91,7 @@ class RtsVideoEditor {
         })
     }
 
-    #_initKeyBoardEvent(){
+    initKeyBoardEvent(){
         //쉬프트키가 눌린 경우 구간 선택 기능을 추가 합니다.
         $(document).on('keydown', (e)=>{
             if(this.validKeyCode == e.keyCode) this.isKeyDown = true
@@ -101,7 +100,7 @@ class RtsVideoEditor {
     }
 
     //화면에 그릴 대상을 만들어 줍니다.
-    #_generateObject(){
+    generateObject(){
         $(document).ready(()=>{
             $(`#${this.MainName}`).append(
                 $('<img>').attr({id:this.previewName}).addClass(RtsVideoEditor.prvClass),
@@ -117,7 +116,7 @@ class RtsVideoEditor {
     }
 
     //스크롤 중지 관련 이벤트를 만들어 줍니다.
-    #_initScroll(){
+    initScroll(){
         let isScroll = false
         let scrollLeft = 0
 
@@ -130,14 +129,14 @@ class RtsVideoEditor {
             let len = Number($(`.${this.imgChild}`).css('width').replace('px',''))  //타임라인 그려진 크기를 가져와서
             if(isScroll){
                 this.startImageNumber = parseInt(scrollLeft / len)  //이동된 스크롤 값으로 나누면 해당 인덱스 번호와 얼추 맞습니다
-                this.#_downloadImg()  //그러면 사진이 없으므로 사진을 가져 옵니다
+                this.downloadImg()  //그러면 사진이 없으므로 사진을 가져 옵니다
             }
             isScroll = false  //스크롤 이벤트가 끝났음을 대입 합니다
         })
     }
 
     //타임라인을 그립니다.
-    #_initTimeLine(res){
+    initTimeLine(res){
 
         let seconds = res.duration.seconds  //총 시간
         for (let i=0;i <= seconds;i++){
@@ -146,7 +145,7 @@ class RtsVideoEditor {
                 //구간을 삭제하면 인덱스는 그대로이지만 내부의 표시 시간 텍스트는 변하게 됩니다
                 $('<div>').addClass('RtsitemArea').append(
                     $('<div>').addClass(`${this.imgChild} ${RtsVideoEditor.imgChild}`).attr({'indexing': i, id : `${this.imgChild}_${i}`}),
-                    $('<div>').addClass(`${this.timeLineChild} ${RtsVideoEditor.timeLineChild}`).text(this.#_toHHMMSS(i)).attr({'id':`${this.imgTagId}${i}`, 'indexing':i}).click( ()=>{
+                    $('<div>').addClass(`${this.timeLineChild} ${RtsVideoEditor.timeLineChild}`).text(this.toHHMMSS(i)).attr({'id':`${this.imgTagId}${i}`, 'indexing':i}).click( ()=>{
 
                         $(`.${this.timeLineChild}`).removeClass(RtsVideoEditor.thisClicked)
                         $(`.${this.timeLineChild}`).parent().removeClass(RtsVideoEditor.withClicked)
@@ -196,7 +195,7 @@ class RtsVideoEditor {
     }
 
     //데이터를 검증 합니다.
-    #_NVL = (...arg)=> {
+    NVL = (...arg)=> {
         if(arg === undefined || arg === null) return false
         arg.forEach(element => {
             if(element === undefined || element === null) return false
@@ -205,7 +204,7 @@ class RtsVideoEditor {
     }
 
     //숫자를 00:00:00 형식으로 변환 합니다.
-    #_toHHMMSS = arg=>{
+    toHHMMSS = arg=>{
         let sec_num = parseInt(arg, 10)
         let hours   = Math.floor(sec_num / 3600)
         let minutes = Math.floor((sec_num - (hours * 3600)) / 60)
@@ -221,7 +220,7 @@ class RtsVideoEditor {
         setTimeout(() => {
             if(this.btnEventArr.deleteId.filter( dt =>  dt!= undefined && dt == target).length == 0){
                 $(`#${target}`).click(()=>{
-                    this.#_removeLine(calback)
+                    this.removeLine(calback)
                 }) 
                 this.btnEventArr.deleteId.push(target)
             }
@@ -229,7 +228,7 @@ class RtsVideoEditor {
     }
 
     //위 함수에서 사용되는 세부 기능 입니다.
-    #_removeLine(calback){
+    removeLine(calback){
         let miniUndoArr = []
         let imgCld = this.imgChild
         let prvName = this.previewName
@@ -246,13 +245,13 @@ class RtsVideoEditor {
         })     
         this.singleClicked = -1
         this.undoArr.push(miniUndoArr)
-        this.#_reTextOrder()
+        this.reTextOrder()
         if(calback) calback()   
     }
 
-    #_reTextOrder(){
+    reTextOrder(){
         setTimeout(() => {
-            let toHms = this.#_toHHMMSS   
+            let toHms = this.toHHMMSS   
             let viewNumber = 0
             $(`.${this.timeLineChild}`).each(function(i){
                 if($(this).css('display') != 'none'){
@@ -260,7 +259,7 @@ class RtsVideoEditor {
                     viewNumber = viewNumber+1
                 }
             })   
-            this.#_downloadImg()
+            this.downloadImg()
         }, 1000)
     }
 
@@ -269,14 +268,14 @@ class RtsVideoEditor {
         setTimeout(() => {
             if(this.btnEventArr.applyId.filter( dt =>  dt!= undefined && dt == target).length == 0){
                 $(`#${target}`).click(()=>{
-                    this.#_applyLine(calback)
+                    this.applyLine(calback)
                 }) 
                 this.btnEventArr.applyId.push(target)
             }
         }, 300)        
     }
 
-    #_applyLine(calback){
+    applyLine(calback){
         let groupingArr = []
         let miniArr = []
         $(`.${this.timeLineChild}`).each(function(){
@@ -294,7 +293,7 @@ class RtsVideoEditor {
             }
         })      
         groupingArr.push(miniArr)
-        if(calback) this.#_buildVideo(groupingArr, calback)
+        if(calback) this.buildVideo(groupingArr, calback)
     }    
 
     //이전 작업으로 되돌립니다.
@@ -302,14 +301,14 @@ class RtsVideoEditor {
         setTimeout(() => {
             if(this.btnEventArr.undoId.filter( dt =>  dt!= undefined && dt == target).length == 0){
                 $(`#${target}`).click(()=>{
-                    this.#_applyUndo(calback)
+                    this.applyUndo(calback)
                 }) 
                 this.btnEventArr.undoId.push(target)
             }
         }, 300)        
     }
 
-    #_applyUndo(calback){
+    applyUndo(calback){
         if(this.undoArr.length > 0){
             let imgCld = this.imgChild
             this.undoArr[this.undoArr.length-1].forEach( arg => {
@@ -318,19 +317,19 @@ class RtsVideoEditor {
                     $(`#${imgCld}_${arg.indexing}`).show()
                 })
             })
-            this.#_applyLine(null)
+            this.applyLine(null)
             this.undoArr.pop()
             this.singleClicked = -1
         }
-        this.#_reTextOrder()
+        this.reTextOrder()
         if(calback) calback(this.undoArr)   
     }
     
     //최초 화면 생성, 스크롤 이동 및 삭제 이벤트 발생 시 이미지를 다운받습니다.
-    #_downloadImg(){
+    downloadImg(){
         let count = 0
         let textNum = this.startImageNumber  //현재 화면에서 보여지는 인덱스 번호 입니다
-        let toHms = this.#_toHHMMSS   
+        let toHms = this.toHHMMSS   
         let path = this.savedPath
         let imgCld = this.imgChild
         $(`.${this.timeLineChild}`).each(function(){
@@ -351,7 +350,7 @@ class RtsVideoEditor {
         setTimeout(() => {
             if(this.btnEventArr.playId.filter( dt =>  dt!= undefined && dt == target).length == 0){
                 $(`#${target}`).click(()=>{
-                    this.#_applyPlay(calback)
+                    this.applyPlay(calback)
                 }) 
                 this.btnEventArr.playId.push(target)
             }
@@ -359,7 +358,7 @@ class RtsVideoEditor {
     }
 
     //사진을 구간에 따라 재생 합니다.
-    #_applyPlay(calback){
+    applyPlay(calback){
 
         if(this.isPlay) {
             clearInterval(this.isPlay)
@@ -393,7 +392,7 @@ class RtsVideoEditor {
         console.log('scrollNum ::: ',scrollNum)
         this.isPlay = setInterval(() => {
             
-            this.#_downloadImg()  //스크롤 움직임에 따라 이미지를 받습니다
+            this.downloadImg()  //스크롤 움직임에 따라 이미지를 받습니다
 
             while($(`#${this.imgChild}_${targetIdx}`).css('display') == 'none'){  //삭제(가려진) 대상은 넘어 갑니다
                 targetIdx = targetIdx + 1
@@ -428,7 +427,7 @@ class RtsVideoEditor {
         setTimeout(() => {
             if(this.btnEventArr.cutAndNew.filter( dt =>  dt!= undefined && dt == target).length == 0){
                 $(`#${target}`).click(()=>{
-                    this.#_applyCutAndNew(calback)
+                    this.applyCutAndNew(calback)
                 }) 
                 this.btnEventArr.cutAndNew.push(target)
             }
@@ -436,7 +435,7 @@ class RtsVideoEditor {
     }
 
 
-    #_applyCutAndNew(calback){
+    applyCutAndNew(calback){
         let size = $(`.${this.timeLineChild}`).css('width')
         let savedArr = []   //저장에 사용될 배열 입니다
         let cuttedArr = []  //화면 그리기에 사용 될 배열 입니다
@@ -469,7 +468,7 @@ class RtsVideoEditor {
                         if(confirm('영역을 삭제 합니까?')) $(`#${removingId}`).remove()
                     }),
                     $('<input type="button">').val('영상생성').addClass('btn btn-primary btn-sm').click(()=>{
-                        if(confirm('영상을 생성 합니까?'))  this.#_buildVideo([savedArr], calback)
+                        if(confirm('영상을 생성 합니까?'))  this.buildVideo([savedArr], calback)
                     })
                 )
             )
@@ -479,7 +478,7 @@ class RtsVideoEditor {
     }
 
     //영상을 재생하도록 요청 합니다
-    #_buildVideo(arr, calback){
+    buildVideo(arr, calback){
         if(calback) calback.befor()
         let param = {
             list : JSON.stringify(arr),
@@ -568,3 +567,5 @@ $(document).ready(function(){
     })    
 })
 
+const Core = {core};
+export default Core;

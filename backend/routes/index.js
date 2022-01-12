@@ -6,7 +6,6 @@ var router = express.Router();
 const fs = require('fs');
 const fileUpload = require('express-fileupload')
 const app = express();
-const port = 3000;
 
 
 const ffmpeg = require('./ffmpegControl')
@@ -18,9 +17,6 @@ app.get('/', function(req, res) {
   res.render('index');
 })
 
-app.listen(port, () => {
-console.log('server start')
-})
 //
 
 /* GET home page. */

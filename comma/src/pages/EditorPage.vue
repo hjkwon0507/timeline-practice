@@ -79,6 +79,7 @@ import NarrationSlide from '@/components/NarrationSlide.vue'
 import AppFooter from '../components/AppFooter.vue'
 import BgmSlide from '@/components/BgmSlide.vue'
 import audios from '@/assets/js/audio.js'
+import Core from '@/assets/js/core.js'
   
 
 export default {
@@ -124,6 +125,8 @@ export default {
     AppFooter,
   },
   mounted() {
+    //파일을 전송하여 분석 합니다
+    Core.core;
     //영상 업로드
     let dragArea=document.querySelector(".drag-area");
     let dargText=document.querySelector(".upload-header");

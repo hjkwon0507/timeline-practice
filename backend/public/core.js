@@ -1,5 +1,5 @@
 
-class RtsVideoEditor {
+const core = class RtsVideoEditor {
 
     /*
      * 클래스 상수 목록 입니다.
@@ -568,3 +568,5 @@ $(document).ready(function(){
     })    
 })
 
+const Core = {core}
+export default Core;
