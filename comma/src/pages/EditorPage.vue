@@ -125,8 +125,7 @@ export default {
     AppFooter,
   },
   mounted() {
-    //파일을 전송하여 분석 합니다
-    Core.core;
+    
     //영상 업로드
     let dragArea=document.querySelector(".drag-area");
     let dargText=document.querySelector(".upload-header");
@@ -138,17 +137,20 @@ export default {
       input.click();
     };
     input.addEventListener('change',function(){
+      
       file=this.files[0];
       let param = new FormData();
       param.append('file', file);
-      editor.getInformation(param,  {
-            befor : ()=>{
-              document.querySelector('.curtain').style.display = 'block'
-            },
-            done : ()=>{
-              document.querySelector('.curtain').style.display = 'none'
-            }
-        })
+      //파일을 전송하여 분석 합니다
+      Core.core;
+      // editor.getInformation(param,  {
+      //       befor : ()=>{
+      //         document.querySelector('.curtain').style.display = 'block'
+      //       },
+      //       done : ()=>{
+      //         document.querySelector('.curtain').style.display = 'none'
+      //       }
+      //   })
       dragArea.classList.add('active')
       displayFile();
     })
