@@ -1,5 +1,5 @@
 
-const core = class RtsVideoEditor {
+class RtsVideoEditor {
 
     /*
      * 클래스 상수 목록 입니다.
@@ -555,8 +555,11 @@ editor.applyCutAndNew('cutting',  {
 
 $(document).ready(function(){
     $('#file').change(function(){
+        console.log('core.js');
         let param = new FormData()
         param.append('file', $('#file')[0].files[0])
+        console.log($('#file')[0].files[0]);
+        console.log(editor);
         editor.getInformation(param,  {
             befor : ()=>{
                 $('.curtain').show()
@@ -567,6 +570,3 @@ $(document).ready(function(){
         })
     })    
 })
-
-const Core = {core}
-export default Core;
